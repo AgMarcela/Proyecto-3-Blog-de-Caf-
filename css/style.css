@@ -1,0 +1,253 @@
+    /* primero resgitrar las variables */
+    
+     :root {
+        --fuenteheading: 'PT Sans', 'sans-serif';
+        --fuenteParrafos: 'Open Sans', 'sans-serif';
+        --primario: #784D3C;
+        --blanco: #ffff;
+        --negro: #000000;
+        --gris: #e1e1e1;
+    }
+    /* la siguiente utilidad es para hacer que el border y el padding no afecte el ancho de los elementos */
+    
+    html {
+        box-sizing: border-box;
+        font-size: 62.5%;
+        /*1 rem = 10px se debe colocar siempre*/
+    }
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+        /*se debe colocar siempre*/
+    }
+    
+    body {
+        font-family: var(--fuenteParrafos);
+        font-size: 1.6rem;
+        line-height: 2;
+        /*el line height es interlineado en todo el body*/
+    }
+    /* Globales */
+    
+    .contenedor {
+        max-width: 120rem;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    a {
+        text-decoration: none;
+        /*se le está quitando el subrayado que los enlaces tienen por defecto*/
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--fuenteheading);
+        line-height: 1.2;
+    }
+    
+    h1 {
+        font-size: 4.8rem;
+    }
+    
+    h2 {
+        font-size: 4rem;
+    }
+    
+    h3 {
+        font-size: 3.2rem;
+    }
+    
+    h4 {
+        font-size: 2.8rem;
+    }
+    
+    img {
+        max-width: 100%;
+    }
+    /* Utilidades */
+    
+    .no-margin {
+        margin: 0;
+        /* esta clase nos va perder quitar el margen que el navegador le da por defecto a los elementos */
+    }
+    
+    .no-padding {
+        padding: 0;
+        /* esta clase nos va perder quitar el padding que el navegador le de por defecto a los elementos */
+    }
+    
+    .centrar-texto {
+        text-align: center;
+    }
+    /* PRIMER BLOQUE: Creando header que tiene un contenedor, un logo enlace y una navegación */
+    
+    .header {
+        background-image: url(../img/banner.jpg);
+        height: 60rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        /*este estilo es para que cuando se reduzca el tamaño del dispositivo
+    la imagen background se reduzca conservandose en el centro. se centra vertical y horizontal por eso doble center. si lo quiero derecha o izquierda se coloca left center o right center*/
+    }
+    
+    .header__texto {
+        text-align: center;
+        color: var(--blanco);
+        margin-top: 5rem;
+    }
+    
+    @media (min-width: 768px) {
+        .header__texto {
+            margin-top: 15rem;
+        }
+    }
+    /*Agregar barra en parte superior del header donde se ubica el logo enlace y la navegación cada uno es un bloque diferente dentro de la barra*/
+    /*Barra. El logoenlace queda a la izq y nav en la derecha*/
+    
+    @media (min-width: 768px) {
+        .barra {
+            display: flex;
+            justify-content: space-between;
+            /* el display ubica uno frente al otro. el justify alínea contenido horizontalmente y el space between lo coloca al otro lado  */
+            align-items: center;
+            /* alignitems para alinear verticalmente los dos elementos y center para centrarlos */
+        }
+    }
+    /*Estilos al primer elemento de la barra que es el lOGOENLACE, ubicado a la izquierda */
+    
+    .logo {
+        color: var(--blanco);
+    }
+    
+    .logo__nombre {
+        font-weight: 400;
+    }
+    
+    .logo__bold {
+        font-weight: 700;
+    }
+    /* Nota: se agregaron las clases no-margin y center-text en el html del logo__nombre para que tomara los estilos */
+    /* Nota2: recordar ir revisando en mobile para ir colocando las mq  */
+    /* Estilos al segundo elemento de la barra que es la NAVEGACION */
+    /* Nota3: tener en cuenta que a partir de tablet la navegacion NO debe ir en block, se cambia a flex, uno al lado del otro */
+    
+    @media (min-width:768px) {
+        .navegacion {
+            display: flex;
+            gap: 2rem;
+            /*separacion*/
+        }
+    }
+    /* Ajustar para mobile la navegacion en block:uno debajo del otro  */
+    
+    .navegacion__enlace {
+        display: block;
+        text-align: center;
+        font-size: 1.8rem;
+        color: var(--blanco)
+    }
+    /* Agregando animacion a enlaces */
+    
+    @media (min-width:768px) {
+        .navegacion a {
+            position: relative;
+        }
+        .navegacion a::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background-color: #F1B925;
+            bottom: 0;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.4s ease-in-out;
+        }
+        .navegacion a:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+    }
+    /*SEGUNDO BLOQUE: Estilos a NUESTROBLOG el contenedor o contenido principal: blog y aside*/
+    
+    @media (min-width: 768px) {
+        .contenido-principal {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            column-gap: 4rem;
+        }
+    }
+    
+    .entrada {
+        border-bottom: 1px solid var(--gris);
+        margin-bottom: 2rem;
+    }
+    /* No queremos el border bottom al final, entonces lo eliminamos de la siguiente manera: */
+    
+    .entrada:last-of-type {
+        border: none;
+        margin-bottom: 0;
+    }
+    
+    .boton {
+        display: block;
+        font-family: var(--fuenteheading);
+        color: var(--blanco);
+        text-align: center;
+        padding: 1rem 2rem;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+        .boton {
+            display: inline-block;
+        }
+    }
+    
+    .boton--primario {
+        background-color: var(--negro)
+    }
+    /* SEGUNDO BLOQUE: Estilos al bloque aside: sidebar */
+    
+    .boton--secundario {
+        background-color: var(--primario);
+    }
+    
+    .cursos {
+        list-style: none;
+    }
+    
+    .widget-curso {
+        border-bottom: 1px solid var(--gris);
+        margin-bottom: 2rem;
+    }
+    
+    .widget-curso:last-of-type {
+        border: none;
+        margin-bottom: 0;
+    }
+    
+    .widget-curso__label {
+        font-family: var(--fuenteheading);
+        font-weight: 700;
+    }
+    
+    .widget-curso__info {
+        font-weight: 400;
+    }
+    
+    .widget-curso__label,
+    .widget-curso__info {
+        font-size: 2rem;
+    }
