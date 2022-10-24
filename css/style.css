@@ -107,6 +107,10 @@
             margin-top: 15rem;
         }
     }
+    
+    .barra {
+        padding: 4rem;
+    }
     /*Agregar barra en parte superior del header donde se ubica el logo enlace y la navegación cada uno es un bloque diferente dentro de la barra*/
     /*Barra. El logoenlace queda a la izq y nav en la derecha*/
     
@@ -164,7 +168,7 @@
             width: 100%;
             height: 2px;
             border-radius: 2px;
-            background-color: #F1B925;
+            background-color: var(--primario);
             bottom: 0;
             left: 0;
             transform-origin: right;
@@ -207,12 +211,19 @@
         text-transform: uppercase;
         font-weight: 700;
         margin-bottom: 2rem;
+        border: none;
     }
     
     @media (min-width: 768px) {
         .boton {
             display: inline-block;
         }
+    }
+    
+    .boton:hover {
+        cursor: pointer;
+        transform: scale(0.9);
+        transition: all 600ms;
     }
     
     .boton--primario {
@@ -223,6 +234,7 @@
     .boton--secundario {
         background-color: var(--primario);
     }
+    /* }Revisar codigo */
     
     .cursos {
         list-style: none;
@@ -250,4 +262,93 @@
     .widget-curso__label,
     .widget-curso__info {
         font-size: 2rem;
+    }
+    
+    .footer {
+        background-color: var(--negro);
+        padding-bottom: 3rem;
+        margin-top: 4rem;
+    }
+    /* Agregando estilos de página Sobrenosotros. Nota: comenzar agregando mq */
+    
+    @media (min-width: 768px) {
+        .sobre-nosotros {
+            display: flex;
+            gap: 2rem;
+        }
+        .sobre-nosotros__imagen,
+        .sobre-nosotros__texto {
+            flex-basis: 50%;
+        }
+    }
+    /* nota: el flex-basis: es el width cuando se trabaja con Flexbox */
+    /* Agregando estilos para pagina Cursos */
+    
+    .curso {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--gris);
+    }
+    
+    @media (min-width: 768px) {
+        .curso {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            column-gap: 2.3rem;
+        }
+    }
+    
+    .curso:last-of-type {
+        border: none;
+        margin-bottom: 0;
+    }
+    
+    .curso__label {
+        font-family: var(--fuenteheading);
+        font-weight: 700;
+    }
+    
+    .curso__info {
+        font-weight: 400;
+    }
+    
+    .curso__label,
+    .curso__info {
+        font-size: 2rem;
+    }
+    /* Agregando estilos para página de CONTACTO */
+    
+    .contacto-bg {
+        background-image: url(../img/contacto.jpg);
+        height: 40rem;
+        background: cover;
+        background-repeat: no-repeat;
+    }
+    /* Agregando Estilos al FORMULARIO de la Página de CONTACTO */
+    
+    .formulario {
+        background-color: var(--blanco);
+        margin: -9rem auto 0 auto;
+        width: 95%;
+        padding: 5rem;
+    }
+    
+    .campo {
+        display: flex;
+        margin-bottom: 2rem;
+        /* gap: 2rem; quitando aqui, sirve el padding right en el label y es mas compatible */
+    }
+    
+    .campo__label {
+        flex: 0 0 9rem;
+        text-align: right;
+        padding-right: 2rem;
+    }
+    
+    .campo__field {
+        flex: 1;
+        border: 1px solid var(--gris);
+    }
+    
+    .campo__field--textarea {
+        height: 20rem;
     }
